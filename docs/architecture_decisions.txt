@@ -1,0 +1,35 @@
+You have been tasked to enhance the POC application into a minimum viable product to handle the large volume of location data that will be ingested.
+It is your job to refactor this application into a microservice architecture using message passing techniques that you have learned in this course.
+
+
+Why kafka:
+Large, continous volume of data, nice to decouple ingestion data from processing. Can also be used for post processing of
+events that happend during the conference. Mutiple workers can divide the workload and work simutaneously procssessing the evetns provided.
+
+Today we have one monolithic application each enpoint recieves different load of trafic, it would thus be beneficial to
+split the existing application into microservices. The split wil happen based on endpoints exposed.
+e.g
+- Person
+- Connection
+- Location
+which each will be one microservice. The database will be a stand-alone entity.
+
+Since location data is tohugh to be frequent and a high thorughput is expected, we need to optimize the message passing.
+Hence grpc is choosen as protol to the location service to handle the burst of trafics at speed.
+To not overwhelm the database with incoming requests and block write request from the other services I suggest a
+ Kakfa cluster betweenthe location service and the PSQL database. This is done to ahieve async processing of the
+ location data, and will split the location service into to new components:
+
+- Location producer
+- Location consumer
+
+The producer will be recieving the grpc request and pushing them onto the que,
+ while the consumer will be reading messages from the que
+and writing them to the database.
+
+One paragraph about time and cost also:
+should be able to launch project in 2 weeks - focus on simple que with only one endpoint.
+Keep the rest api as is, only expand on the grpc one.
+
+
+

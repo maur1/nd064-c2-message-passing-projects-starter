@@ -7,8 +7,8 @@ db = SQLAlchemy()
 
 
 def create_app(env=None):
-    from app.config import config_by_name
-    from app.routes import register_routes
+    from modules.udaconnect.location.app.config import config_by_name
+    from modules.udaconnect.location.app.routes import register_routes
 
     app = Flask(__name__)
     app.config.from_object(config_by_name[env or "test"])

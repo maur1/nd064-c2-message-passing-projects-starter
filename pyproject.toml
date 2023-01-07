@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "nd064-c2-message-passing-projects-starter"
+version = "0.1.0"
+description = ""
+authors = ["Maureen <maureen@live.no>"]
+readme = "README.md"
+packages = [{include = "nd064_c2_message_passing_projects_starter"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aniso8601 = "^9.0.1"
+attrs = "^22.2.0"
+click = "^8.1.3"
+flask = "^2.2.2"
+flask-cors = "^3.0.10"
+flask-accepts = "^0.18.4"
+flask-restful = "^0.3.9"
+flask-restplus = "^0.13.0"
+flask-script = "^2.0.6"
+flask-sqlalchemy = "^3.0.2"
+geoalchemy2 = "^0.12.5"
+itsdangerous = "^2.1.2"
+jinja2 = "^3.1.2"
+jsonschema = "^4.17.3"
+markupsafe = "^2.1.1"
+marshmallow = "^3.19.0"
+marshmallow-sqlalchemy = "^0.28.1"
+psycopg2-binary = "^2.9.5"
+pyrsistent = "^0.19.3"
+python-dateutil = "^2.8.2"
+pytz = "^2022.7"
+six = "^1.16.0"
+shapely = "^2.0.0"
+sqlalchemy = "^1.4.46"
+werkzeug = "^2.2.2"
+flask-restx = "^1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
