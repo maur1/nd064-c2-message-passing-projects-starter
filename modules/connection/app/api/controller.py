@@ -4,21 +4,21 @@ from flask_accepts import responds
 from flask_restx import Namespace, Resource
 from typing import Optional
 
-from api.schema import ConnectionSchema
-from api.service import ConnectionService
+from app.api.schema import ConnectionSchema
+from app.api.service import ConnectionService
 
 DATE_FORMAT = "%Y-%m-%d"
 
-api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
+uda_api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
 
 # TODO: This needs better exception handling
 # Controller first pint
 # controller uses schemas to respond in json
-@api.route("/persons/<person_id>/connection")
-@api.param("start_date", "Lower bound of date range", _in="query")
-@api.param("end_date", "Upper bound of date range", _in="query")
-@api.param("distance", "Proximity to a given user in meters", _in="query")
+@uda_api.route("/persons/<person_id>/connection")
+@uda_api.param("start_date", "Lower bound of date range", _in="query")
+@uda_api.param("end_date", "Upper bound of date range", _in="query")
+@uda_api.param("distance", "Proximity to a given user in meters", _in="query")
 class ConnectionDataResource(Resource):
     @responds(schema=ConnectionSchema, many=True)
     def get(self, person_id) -> ConnectionSchema:

@@ -31,5 +31,6 @@ One paragraph about time and cost also:
 should be able to launch project in 2 weeks - focus on simple que with only one endpoint.
 Keep the rest api as is, only expand on the grpc one.
 
+TODO - renaming of api endpoints before delivery
 
 

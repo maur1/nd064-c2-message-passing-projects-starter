@@ -2,17 +2,17 @@ import json
 import os
 from kafka import KafkaConsumer
 from sqlalchemy import create_engine
-from geoalchemy2.functions import ST_AsText, ST_Point
+from geoalchemy2.functions import ST_Point
 
 
-DB_USERNAME = "ct_admin" #os.environ["DB_USERNAME"]
-DB_PASSWORD = "d293aW1zb3NlY3VyZQ==" #os.environ["DB_PASSWORD"]
-DB_HOST = "postgres" #os.environ["DB_HOST"]
-DB_PORT = "5432" #os.environ["DB_PORT"]
-DB_NAME = "geoconnections" #os.environ["DB_NAME"]
+DB_USERNAME = os.environ["DB_USERNAME"]
+DB_PASSWORD = os.environ["DB_PASSWORD"]
+DB_HOST = os.environ["DB_HOST"]
+DB_PORT = os.environ["DB_PORT"]
+DB_NAME = os.environ["DB_NAME"]
 
-KAFKA_SERVER = "localhost:9092" # os.environ["KAFKA_URL"]
-TOPIC = "location" #os.environ["KAFKA_TOPIC"]
+KAFKA_SERVER = os.environ["KAFKA_URL"]
+TOPIC = os.environ["KAFKA_TOPIC"]
 
 
 locations = KafkaConsumer(TOPIC, bootstrap_servers=[KAFKA_SERVER], group_id=None, auto_offset_reset='earliest')

@@ -2,8 +2,11 @@ import logging
 from datetime import datetime, timedelta
 from typing import Dict, List
 
-from app import db
 from sqlalchemy.sql import text
+
+from app import db
+
+from app.api.model import Connection, Location, Person
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("udaconnect-api")

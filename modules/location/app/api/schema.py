@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 
-from modules.api.app.udaconnect.connection.models import Location
+from app.api.model import Location
 
 
 # one layer above db mappings
