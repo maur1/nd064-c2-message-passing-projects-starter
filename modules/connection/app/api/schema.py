@@ -1,7 +1,6 @@
 from marshmallow import Schema, fields
 
-from modules.api.app.udaconnect.location.schemas import LocationSchema
-from modules.api.app.udaconnect.person.schemas import PersonSchema
+from api.schema import PersonSchema, LocationSchema
 
 
 # one layer above db mappings

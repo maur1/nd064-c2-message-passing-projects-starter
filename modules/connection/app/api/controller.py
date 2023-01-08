@@ -4,8 +4,8 @@ from flask_accepts import responds
 from flask_restx import Namespace, Resource
 from typing import Optional
 
-from modules.api.app.udaconnect.connection.app.api.schema import ConnectionSchema
-from modules.api.app.udaconnect.connection.app.api.service import ConnectionService
+from api.schema import ConnectionSchema
+from api.service import ConnectionService
 
 DATE_FORMAT = "%Y-%m-%d"
 

@@ -1,21 +1,21 @@
 from flask import request
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
-from typing import Optional, List
+from typing import List
 
-from modules.udaconnect.person.app.api.model import Person
-from modules.udaconnect.person.app.api.schema import PersonSchema
-from modules.udaconnect.person.app.api.service import PersonService
+from app.api.model import Person
+from app.api.schema import PersonSchema
+from app.api.service import PersonService
 
 DATE_FORMAT = "%Y-%m-%d"
 
-api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
+uda_api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
 
 # TODO: This needs better exception handling
 
 
-@api.route("/persons")
+@uda_api.route("/persons")
 class PersonsResource(Resource):
     @accepts(schema=PersonSchema)
     @responds(schema=PersonSchema)
@@ -30,8 +30,8 @@ class PersonsResource(Resource):
         return persons
 
 
-@api.route("/persons/<person_id>")
-@api.param("person_id", "Unique ID for a given Person", _in="query")
+@uda_api.route("/persons/<person_id>")
+@uda_api.param("person_id", "Unique ID for a given Person", _in="query")
 class PersonResource(Resource):
     @responds(schema=PersonSchema)
     def get(self, person_id) -> Person:
