@@ -38,11 +38,11 @@ spec:
         - name: KAFKA_URL
           valueFrom:
             configMapKeyRef:
-              name: db-env
+              name: kafka-env
               key: KAFKA_URL
         - name: KAFKA_TOPIC
           valueFrom:
             configMapKeyRef:
-              name: db-env
+              name: kafka-env
               key: KAFKA_TOPIC
       restartPolicy: Always

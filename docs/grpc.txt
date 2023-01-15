@@ -1,0 +1,15 @@
+--- GRPC LocationEventMessage ---
+The following message is defined to be sent over GRPC
+------
+message LocationEventMessage {
+  string personId = 1;
+  float latitude = 2;
+  float longitude = 3;
+}
+
+service LocationService {
+  rpc Create(LocationEventMessage) returns (LocationEventMessage);
+}
+-----
+To send a sample response nagivate to ´modules/location-producer´
+run ´python dummy_client.py´ to send an example message.

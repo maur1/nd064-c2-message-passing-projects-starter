@@ -1,4 +1,5 @@
 import json
+import logging
 import time
 import os
 from concurrent import futures
@@ -13,18 +14,18 @@ from kafka import KafkaProducer
 TOPIC_NAME = os.getenv("KAFKA_TOPIC")
 KAFKA_SERVER = os.getenv("KAFKA_URL")
 
-print("HELLO")
+logging.basicConfig(level=logging.WARNING)
+logger = logging.getLogger("udaconnect-api")
+
 class LocationServicer(location_pb2_grpc.LocationServiceServicer):
 
     def Create(self, request, context):
-        print("received message")
-        print(request)
+        logger.info(f"received msg from grpc-client: {request}")
         request_value = {
             "personId": request.personId,
             "latitude": request.latitude,
             "longitude": request.longitude,
         }
-        print(request_value)
         self._push_request_to_kafka(request_value)
         return location_pb2.LocationEventMessage(**request_value)
 
@@ -35,27 +36,24 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
                                  value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
         try:
-            print("pushing to que")
+            logger.info(f"pushing msg to kafka on TOPIC: {TOPIC_NAME}, CLUSTER: {KAFKA_SERVER}")
             producer.send(TOPIC_NAME, request_value)
             producer.flush()
-            print("pushing to succeeded")
+            logger.info("push success")
         except KafkaError as e:
-            print('Not able to send message to server', e)
+            logger.error('Not able to push message:', e)
             pass
 
 
 # Initialize gRPC server
-print("Starting server on port 5005")
-print(KAFKA_SERVER)
-print(TOPIC_NAME)
+logger.info("Starting server on port 5005")
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
 location_pb2_grpc.add_LocationServiceServicer_to_server(LocationServicer(), server)
 server.add_insecure_port("[::]:5005")
 server.start()
-print("Server started")
+logger.info("Server started")
 # Keep thread alive
 try:
-    print(".")
     while True:
         time.sleep(500)
 except KeyboardInterrupt:

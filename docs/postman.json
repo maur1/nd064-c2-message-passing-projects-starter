@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "0099359a-40c9-4e73-a0a3-1c6afd19c431",
+		"name": "UdaConnect API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16977533"
+	},
+	"item": [
+		{
+			"name": "api/persons",
+			"item": [
+				{
+					"name": "get persons resource",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 5,\n        \"company_name\": \"Alpha Omega Upholstery\",\n        \"last_name\": \"Fargo\",\n        \"first_name\": \"Taco\"\n    },\n    {\n        \"id\": 6,\n        \"company_name\": \"USDA\",\n        \"last_name\": \"Shader\",\n        \"first_name\": \"Frank\"\n    },\n    {\n        \"id\": 1,\n        \"company_name\": \"Hampton, Hampton and McQuill\",\n        \"last_name\": \"Trexler\",\n        \"first_name\": \"Pam\"\n    },\n    {\n        \"id\": 8,\n        \"company_name\": \"Paul Badman & Associates\",\n        \"last_name\": \"Badman\",\n        \"first_name\": \"Paul\"\n    },\n    {\n        \"id\": 9,\n        \"company_name\": \"The Chicken Sisters Restaurant\",\n        \"last_name\": \"Spring\",\n        \"first_name\": \"Otto\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "post persons resource",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n    \"first_name\": \"Maureen\"\n    \"last_name\": \"Ohara\"\n    \"company_name\": \"Test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlPerson}}/api/persons",
+							"host": [
+								"{{BaseUrlPerson}}"
+							],
+							"path": [
+								"api",
+								"persons"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "company_name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 8,\n    \"first_name\": \"Maureen\",\n    \"last_name\": \"Ohara\",\n    \"company_name\": \"Test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"first_name\": \"Maureen\",\n    \"id\": 2,\n    \"last_name\": \"Ohara\",\n    \"company_name\": \"Test\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get person resource",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons/:person_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								":person_id"
+							],
+							"variable": [
+								{
+									"key": "person_id",
+									"value": "quis sint",
+									"description": "(Required) Unique ID for a given Person"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons/:person_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										":person_id"
+									],
+									"variable": [
+										{
+											"key": "person_id",
+											"value": "quis sint",
+											"description": "(Required) Unique ID for a given Person"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "get connection data resource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=commodo Duis adipisicing dolor&end_date=commodo Duis adipisicing dolor&start_date=commodo Duis adipisicing dolor",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"persons",
+						":person_id",
+						"connection"
+					],
+					"query": [
+						{
+							"key": "distance",
+							"value": "commodo Duis adipisicing dolor",
+							"description": "Proximity to a given user in meters"
+						},
+						{
+							"key": "end_date",
+							"value": "commodo Duis adipisicing dolor",
+							"description": "Upper bound of date range"
+						},
+						{
+							"key": "start_date",
+							"value": "commodo Duis adipisicing dolor",
+							"description": "Lower bound of date range"
+						}
+					],
+					"variable": [
+						{
+							"key": "person_id",
+							"value": "commodo Duis adipisicing dolor",
+							"description": "(Required) "
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=commodo Duis adipisicing dolor&end_date=commodo Duis adipisicing dolor&start_date=commodo Duis adipisicing dolor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								":person_id",
+								"connection"
+							],
+							"query": [
+								{
+									"key": "distance",
+									"value": "commodo Duis adipisicing dolor"
+								},
+								{
+									"key": "end_date",
+									"value": "commodo Duis adipisicing dolor"
+								},
+								{
+									"key": "start_date",
+									"value": "commodo Duis adipisicing dolor"
+								}
+							],
+							"variable": [
+								{
+									"key": "person_id",
+									"value": "commodo Duis adipisicing dolor",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}
