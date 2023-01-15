@@ -1,5 +1,6 @@
 import json
 import time
+import os
 from concurrent import futures
 
 import grpc
@@ -9,10 +10,10 @@ import location_pb2_grpc
 import location_pb2
 from kafka import KafkaProducer
 
-TOPIC_NAME = "location"
-KAFKA_SERVER = "localhost:9092"
+TOPIC_NAME = os.getenv("KAFKA_TOPIC")
+KAFKA_SERVER = os.getenv("KAFKA_URL")
 
-
+print("HELLO")
 class LocationServicer(location_pb2_grpc.LocationServiceServicer):
 
     def Create(self, request, context):
@@ -30,7 +31,7 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
     @staticmethod
     def _push_request_to_kafka(request_value):
 
-        producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER], api_version=(0, 10, 0),
+        producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER], api_version=(0,11,5),
                                  value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
         try:
@@ -44,14 +45,18 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
 
 
 # Initialize gRPC server
+print("Starting server on port 5005")
+print(KAFKA_SERVER)
+print(TOPIC_NAME)
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
 location_pb2_grpc.add_LocationServiceServicer_to_server(LocationServicer(), server)
-print("Server starting on port 5005...")
 server.add_insecure_port("[::]:5005")
 server.start()
+print("Server started")
 # Keep thread alive
 try:
+    print(".")
     while True:
-        time.sleep(400)
+        time.sleep(500)
 except KeyboardInterrupt:
     server.stop(0)

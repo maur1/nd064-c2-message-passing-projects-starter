@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: udaconnect-app
-  name: udaconnect-app
+    service: uda-fe-app
+  name: uda-fe-app
 spec:
   ports:
   - name: "3000"
@@ -11,28 +11,28 @@ spec:
     targetPort: 3000
     nodePort: 30000
   selector:
-    service: udaconnect-app
+    service: uda-fe-app
   type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: udaconnect-app
-  name: udaconnect-app
+    service: uda-fe-app
+  name: uda-fe-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: udaconnect-app
+      service: uda-fe-app
   template:
     metadata:
       labels:
-        service: udaconnect-app
+        service: uda-fe-app
     spec:
       containers:
-      - image: udacity/nd064-udaconnect-app:latest # TODO: use your own dockerhub account
-        name: udaconnect-app
+      - image: maur1/uda-fe-app:latest
+        name: uda-fe-app
         imagePullPolicy: Always
         resources:
           requests:

@@ -2,11 +2,9 @@ from flask import request
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
 from typing import List
-
 from app.api.model import Person
 from app.api.schema import PersonSchema
 from app.api.service import PersonService
-
 DATE_FORMAT = "%Y-%m-%d"
 
 uda_api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
