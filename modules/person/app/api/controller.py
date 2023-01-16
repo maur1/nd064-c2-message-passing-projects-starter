@@ -10,7 +10,6 @@ DATE_FORMAT = "%Y-%m-%d"
 uda_api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
 
-# TODO: This needs better exception handling
 
 @uda_api.route("/persons")
 class PersonsResource(Resource):

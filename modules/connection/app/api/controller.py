@@ -12,9 +12,6 @@ DATE_FORMAT = "%Y-%m-%d"
 uda_api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
 
 
-# TODO: This needs better exception handling
-# Controller first pint
-# controller uses schemas to respond in json
 @uda_api.route("/persons/<person_id>/connection")
 @uda_api.param("start_date", "Lower bound of date range", _in="query")
 @uda_api.param("end_date", "Upper bound of date range", _in="query")
